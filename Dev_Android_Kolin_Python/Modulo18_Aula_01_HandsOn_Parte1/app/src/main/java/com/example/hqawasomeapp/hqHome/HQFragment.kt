@@ -1,4 +1,4 @@
-package com.example.hqawasomeapp
+package com.example.hqawasomeapp.hqHome
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import androidx.navigation.navGraphViewModels
 import com.example.hqawasomeapp.placeholder.PlaceholderContent
 import android.Manifest
@@ -20,6 +19,8 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.hqawasomeapp.HQViewModel
+import com.example.hqawasomeapp.R
 import com.google.android.material.snackbar.Snackbar
 
 

@@ -1,16 +1,13 @@
-package com.example.hqawasomeapp
+package com.example.hqawasomeapp.hqHome
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.example.hqawasomeapp.placeholder.PlaceholderContent.PlaceholderItem
 import com.example.hqawasomeapp.databinding.FragmentItemBinding
-import androidx.navigation.fragment.findNavController
+import com.example.hqawasomeapp.R
 
 /** Mantem a (Interface) depois dos (import) */
 interface HQItemListener {
