@@ -1,5 +1,6 @@
 package com.example.hqawasomeapp
 
+import android.telecom.Call
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,6 +23,21 @@ class MyhqRecyclerViewAdapter(
     private val listener: HQItemListener,           //Adiciona ouvinte como um parâmetro do construtor
     private val fragment: Fragment
 ) : RecyclerView.Adapter<MyhqRecyclerViewAdapter.ViewHolder>() {
+
+    /** Requisição assíncrona - enqueue  */
+    val hqService = retrofit.create(HQDetails::class.java)
+
+    hqService.getHQ("test").enqueue(object : Callback<HQDetails>{
+        override fun onResponse(call: Call<HW>, response: Response<HQDetails>) {
+            if(response.isSuccessful){
+                //sucesso!
+            }else{
+                //algum erro
+            }
+        }
+    })
+    /** fim */
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -55,4 +71,6 @@ class MyhqRecyclerViewAdapter(
             binding.executePendingBindings()
         }
     }
+
+
 }

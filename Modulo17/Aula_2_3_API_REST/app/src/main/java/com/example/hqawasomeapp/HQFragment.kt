@@ -21,12 +21,19 @@ import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class HQFragment : Fragment(), HQItemListener {
 
     private var columnCount = 1
     private val viewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph){defaultViewModelProviderFactory}
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.themoviedb.org/3/movie/latest")
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build()
 
     private var permissiomResultLauncher: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
@@ -50,6 +57,24 @@ class HQFragment : Fragment(), HQItemListener {
                     else -> {}
                 }
             }
+
+    /** Requisição Assíncrona */
+    val comicService = retrofit.create(ComicsService::class.java)
+
+    comicService.getComics("test").enqueue(object : Callback<Comic>{
+        override fun onResponse(call: Call<Comic>, response: Response<Comic>) {
+            if(response.isSucessful){
+                //sucesso!!
+            }else{
+                //erro
+            }
+        }
+        override fun onFailure(call: Call<Comic>, t: Throwable) {
+            //erro
+        }
+    })
+    /** FIM */
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
