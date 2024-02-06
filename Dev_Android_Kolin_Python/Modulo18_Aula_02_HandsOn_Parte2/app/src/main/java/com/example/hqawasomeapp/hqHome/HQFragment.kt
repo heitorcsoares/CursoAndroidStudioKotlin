@@ -22,14 +22,17 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.hqawasomeapp.HQViewModel
 import com.example.hqawasomeapp.R
+import com.example.hqawasomeapp.databinding.FragmentItemBinding
 import com.google.android.material.snackbar.Snackbar
 
 
 class HQFragment : Fragment(), HQItemListener {
 
-    private var columnCount = 1
+    //private var columnCount = 1
+    private lateinit var adapter: MyhqRecyclerViewAdapter
     private val viewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph){defaultViewModelProviderFactory}
 
+    /** Permissões para uso CAMERA */
     private var permissiomResultLauncher: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
                 when{
@@ -53,12 +56,24 @@ class HQFragment : Fragment(), HQItemListener {
                 }
             }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentItemBinding.inflate(inflater)
+        val view = binding.root as RecyclerView
 
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
+        adapter = MyhqRecyclerViewAdapter( this)
+
+        view.apply {
+            this.adapter = this@HQFragment.adapter
+            this.layoutManager = LinearLayoutManager(context)
         }
+
+        initObservers()
+
+        return view
+
     }
 
     override fun onCreateView(
@@ -69,7 +84,7 @@ class HQFragment : Fragment(), HQItemListener {
 
         /** Configurando o adapter */
         if (view is RecyclerView) {
-            val adapter = MyhqRecyclerViewAdapter(ComicResponse, this, requireParentFragment())
+            val adapter = MyhqRecyclerViewAdapter(ComicsService, this, requireParentFragment())
             with(view) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
@@ -81,7 +96,26 @@ class HQFragment : Fragment(), HQItemListener {
         return view
     }
 
+    private fun initObservers() {
+        viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {
 
+            it?.let{
+                adapter.updateData(it)
+            }
+        })
+
+        viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
+            val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()
+            findNavController().navigate(action)
+        })
+    }
+
+    override fun onItemSelected(position: Int) {
+        val message = "Item selecionado"
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    /** Solicitação Uso CAMERA  */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -109,6 +143,7 @@ class HQFragment : Fragment(), HQItemListener {
         }
     }
 
+
     companion object {
         const val ARG_COLUMN_COUNT = "column-count"
 
@@ -119,25 +154,6 @@ class HQFragment : Fragment(), HQItemListener {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
             }
-    }
-
-    private fun initObservers() {
-        viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {
-
-            it?.let{
-                adapter.updateData(it)
-            }
-        })
-
-        viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
-            val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()
-            findNavController().navigate(action)
-        })
-    }
-
-    override fun onItemSelected(position: Int) {
-        val message = "Item selecionado"
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
 }
