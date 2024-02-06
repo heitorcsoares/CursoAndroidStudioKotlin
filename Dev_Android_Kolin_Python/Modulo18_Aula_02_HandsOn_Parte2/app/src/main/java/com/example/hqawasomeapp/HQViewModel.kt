@@ -7,15 +7,11 @@ import com.example.hqawasomeapp.HQDetails.HQDetails
 import com.example.hqawasomeapp.data.Comic
 import com.example.hqawasomeapp.data.ComicResponse
 import com.example.hqawasomeapp.hqHome.ComicsService
-import com.example.hqawasomeapp.hqHome.HQFragment
-import com.example.hqawasomeapp.placeholder.DataState
-import com.example.hqawasomeapp.placeholder.PlaceholderContent
 import okhttp3.Response
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-
 
 class HQViewModel : ViewModel() {
 

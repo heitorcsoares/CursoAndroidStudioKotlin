@@ -3,11 +3,7 @@ package com.example.hqawasomeapp.hqHome
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.example.hqawasomeapp.placeholder.PlaceholderContent.PlaceholderItem
 import com.example.hqawasomeapp.databinding.FragmentItemBinding
-import com.example.hqawasomeapp.R
 import com.example.hqawasomeapp.data.Comic
 
 /** Mantem a (Interface) depois dos (import) */

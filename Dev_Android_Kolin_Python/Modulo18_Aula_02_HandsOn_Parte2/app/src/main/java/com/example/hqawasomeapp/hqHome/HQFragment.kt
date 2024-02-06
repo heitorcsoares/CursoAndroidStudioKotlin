@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.navGraphViewModels
-import com.example.hqawasomeapp.placeholder.PlaceholderContent
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -70,7 +69,7 @@ class HQFragment : Fragment(), HQItemListener {
 
         /** Configurando o adapter */
         if (view is RecyclerView) {
-            val adapter = MyhqRecyclerViewAdapter(PlaceholderContent.ITEMS, this, requireParentFragment())
+            val adapter = MyhqRecyclerViewAdapter(ComicResponse, this, requireParentFragment())
             with(view) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
@@ -137,8 +136,7 @@ class HQFragment : Fragment(), HQItemListener {
     }
 
     override fun onItemSelected(position: Int) {
-        val selectedItem = PlaceholderContent.ITEMS[position] // Obtém o item selecionado
-        val message = "Item selecionado: ${selectedItem.content}"
+        val message = "Item selecionado"
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
