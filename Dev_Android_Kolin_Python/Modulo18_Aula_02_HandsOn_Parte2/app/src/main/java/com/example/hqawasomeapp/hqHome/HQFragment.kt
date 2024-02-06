@@ -19,6 +19,8 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.hqawasomeapp.HQViewModel
 import com.example.hqawasomeapp.R
 import com.google.android.material.snackbar.Snackbar
@@ -118,6 +120,20 @@ class HQFragment : Fragment(), HQItemListener {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
             }
+    }
+
+    private fun initObservers() {
+        viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {
+
+            it?.let{
+                adapter.updateData(it)
+            }
+        })
+
+        viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
+            val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()
+            findNavController().navigate(action)
+        })
     }
 
     override fun onItemSelected(position: Int) {
