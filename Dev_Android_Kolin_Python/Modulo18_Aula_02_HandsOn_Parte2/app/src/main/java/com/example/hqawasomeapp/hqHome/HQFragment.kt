@@ -76,6 +76,7 @@ class HQFragment : Fragment(), HQItemListener {
 
     }
 
+    /**
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -93,8 +94,12 @@ class HQFragment : Fragment(), HQItemListener {
                 this.adapter = adapter
             }
         }
+
+        initObservers()
+
         return view
     }
+    */
 
     private fun initObservers() {
         viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {

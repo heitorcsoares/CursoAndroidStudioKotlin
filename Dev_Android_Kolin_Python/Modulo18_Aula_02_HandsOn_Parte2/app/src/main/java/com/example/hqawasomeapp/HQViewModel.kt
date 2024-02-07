@@ -52,6 +52,7 @@ class HQViewModel : ViewModel() {
                 override fun onResponse(
                     call: Call<ComicResponse>,
                     response: Response<ComicResponse>
+                    //response: Response<ComicResponse>
                 ) {
                     if (response.isSuccessful){
                         _hqListLiveData.postValue(response.body()?.data?.results)
