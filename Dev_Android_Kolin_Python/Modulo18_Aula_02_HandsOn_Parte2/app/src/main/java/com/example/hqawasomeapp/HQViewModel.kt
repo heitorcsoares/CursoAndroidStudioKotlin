@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.example.hqawasomeapp.HQDetails.HQDetails
 import com.example.hqawasomeapp.data.Comic
 import com.example.hqawasomeapp.data.ComicResponse
+import com.example.hqawasomeapp.data.DataState
 import com.example.hqawasomeapp.hqHome.ComicsService
+
 import okhttp3.Response
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,8 +20,12 @@ class HQViewModel : ViewModel() {
     val hqDetailsLiveData: LiveData<HQDetails> get() = _hqDetailsLiveData
     private val _hqDetailsLiveData = MutableLiveData<HQDetails>()
 
-    val hqListLiveData: LiveData<List<Comic>?> get() = _hqListLiveData
+    val hqListLiveData: LiveData<List<Comic>?>
+        get() = _hqListLiveData
     private val _hqListLiveData = MutableLiveData<List<Comic>?>()
+
+    val appState: LiveData<DataState> get() = _appState
+    private val _appState = MutableLiveData<DataState>()
 
     val navigationToDetailLiveData get() = _navigationToDetailLiveData
 
@@ -33,6 +39,7 @@ class HQViewModel : ViewModel() {
     private val comicsService = retrofit.create(ComicsService::class.java)
 
     init {
+        _appState.postValue(DataState.Loading)
         getHqData()
     }
 
@@ -52,15 +59,17 @@ class HQViewModel : ViewModel() {
                 override fun onResponse(
                     call: Call<ComicResponse>,
                     response: Response<ComicResponse>
-                    //response: Response<ComicResponse>
                 ) {
                     if (response.isSuccessful){
                         _hqListLiveData.postValue(response.body()?.data?.results)
+                        _appState.postValue(DataState.Success)
+                    }else{
+                        _appState.postValue(DataState.Error)
                     }
                 }
 
                 override fun onFailure(call: Call<ComicResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    _appState.postValue(DataState.Error)
                 }
 
             })

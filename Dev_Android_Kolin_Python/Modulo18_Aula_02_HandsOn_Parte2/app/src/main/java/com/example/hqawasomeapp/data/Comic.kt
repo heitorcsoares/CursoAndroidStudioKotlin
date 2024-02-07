@@ -2,7 +2,6 @@ package com.example.hqawasomeapp.data
 
 import android.media.Image
 import com.squareup.moshi.JsonClass
-import java.util.Objects
 
 @JsonClass(generateAdapter = true)
 data class Comic(
@@ -23,4 +22,6 @@ data class Comic(
     fun getIdString(): String {
         return id?.toString() ?: ""
     }
+
+    fun getImageUlr() = thumbnail?.getFullImagePath()
 }

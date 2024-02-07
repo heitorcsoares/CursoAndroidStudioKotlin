@@ -5,3 +5,4 @@ class ApiCredentials {
     val privatekey = "bd44631de7aa2158dac53f68fe3b7291e575f5f5"
     val baseUrl = "developer.marvel.com"
 }
+

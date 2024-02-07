@@ -2,7 +2,6 @@ package com.example.hqawasomeapp.hqHome
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -56,12 +55,17 @@ class HQFragment : Fragment(), HQItemListener {
                 }
             }
 
-    override fun onCreate(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentItemBinding.inflate(inflater)
-        val view = binding.root as RecyclerView
+
+        val view = binding.root
+        val recyclerView = binding.list
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         adapter = MyhqRecyclerViewAdapter( this)
 
@@ -72,34 +76,12 @@ class HQFragment : Fragment(), HQItemListener {
 
         initObservers()
 
+        view.
+
         return view
 
     }
 
-    /**
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
-
-        /** Configurando o adapter */
-        if (view is RecyclerView) {
-            val adapter = MyhqRecyclerViewAdapter(ComicsService, this, requireParentFragment())
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                this.adapter = adapter
-            }
-        }
-
-        initObservers()
-
-        return view
-    }
-    */
 
     private fun initObservers() {
         viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {
