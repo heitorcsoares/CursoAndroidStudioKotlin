@@ -3,7 +3,6 @@ package com.example.hqawasomeapp.hqHome
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,10 +23,8 @@ import com.example.hqawasomeapp.R
 import com.example.hqawasomeapp.databinding.FragmentItemBinding
 import com.google.android.material.snackbar.Snackbar
 
-
 class HQFragment : Fragment(), HQItemListener {
 
-    //private var columnCount = 1
     private lateinit var adapter: MyhqRecyclerViewAdapter
     private val viewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph){defaultViewModelProviderFactory}
 
@@ -53,7 +50,7 @@ class HQFragment : Fragment(), HQItemListener {
                     }
                     else -> {}
                 }
-            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,25 +73,23 @@ class HQFragment : Fragment(), HQItemListener {
 
         initObservers()
 
-        view.
-
         return view
 
     }
 
 
     private fun initObservers() {
-        viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.hqListLiveData.observe(viewLifecycleOwner) {
 
             it?.let{
                 adapter.updateData(it)
             }
-        })
+        }
 
-        viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner) {
             val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()
             findNavController().navigate(action)
-        })
+        }
     }
 
     override fun onItemSelected(position: Int) {
