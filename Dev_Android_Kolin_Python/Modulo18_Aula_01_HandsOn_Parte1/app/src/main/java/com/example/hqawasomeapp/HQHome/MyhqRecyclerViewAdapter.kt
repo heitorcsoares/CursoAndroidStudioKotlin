@@ -15,12 +15,19 @@ interface HQItemListener {
 }
 
 class MyhqRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>,
-    private val listener: HQItemListener,           //Adiciona ouvinte como um parâmetro do construtor
-    private val fragment: Fragment
+    private val listener: HQItemListener
 ) : RecyclerView.Adapter<MyhqRecyclerViewAdapter.ViewHolder>() {
 
+    private val values: MutableList<PlaceholderItem> = ArrayList()
+
+    fun updateData(hqList: List<PlaceholderItem>) {
+        values.clear()
+        values.addAll(hqList)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         return ViewHolder(
             FragmentItemBinding.inflate(
                 LayoutInflater.from(parent.context),
