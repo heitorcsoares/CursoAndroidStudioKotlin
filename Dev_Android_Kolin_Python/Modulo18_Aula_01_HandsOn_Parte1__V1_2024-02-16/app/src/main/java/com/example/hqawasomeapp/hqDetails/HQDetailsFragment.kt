@@ -1,4 +1,4 @@
-package com.example.hqawasomeapp
+package com.example.hqawasomeapp.hqDetails
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.navGraphViewModels
+import com.example.hqawasomeapp.HQViewModel
+import com.example.hqawasomeapp.R
 import com.example.hqawasomeapp.databinding.FragmentHQDetailsBinding
 
 class HQDetailsFragment : Fragment() {
