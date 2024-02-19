@@ -3,9 +3,10 @@ package com.example.hqawasomeapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.hqawasomeapp.HQDetails.HQDetails
+import com.example.hqawasomeapp.hqHome.HQFragment
 import com.example.hqawasomeapp.placeholder.DataState
 import com.example.hqawasomeapp.placeholder.PlaceholderContent
-import com.example.hqawasomeapp.placeholder.State
 
 
 class HQViewModel : ViewModel() {

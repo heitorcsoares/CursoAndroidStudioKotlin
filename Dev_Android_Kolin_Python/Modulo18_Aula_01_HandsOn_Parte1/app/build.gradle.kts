@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -74,10 +74,12 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")        //Carousel de imagens
 
-    // RETROFIT
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    //implementation("com.squareup.moshi:moshi-Kotlin:1.13.0")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
+    // RETROFIT e MOSHI
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")                 // RETROFIT
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.0")                // MOSHI
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")          // RETORFIT com MOSHI
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")                  //KAP
+    implementation("com.github.bumptech.glide:glide:4.13.1")                //GLIDE
+    annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")        //GLIDE
 
 }

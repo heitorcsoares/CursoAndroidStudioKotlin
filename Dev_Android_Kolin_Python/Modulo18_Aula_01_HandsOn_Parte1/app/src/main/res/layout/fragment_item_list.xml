@@ -11,5 +11,5 @@
     android:background="#4E4B4B"
     android:backgroundTint="#4E4B4B"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".HQFragment"
+    tools:context=".hqHome.HQFragment"
     tools:listitem="@layout/fragment_item" />
