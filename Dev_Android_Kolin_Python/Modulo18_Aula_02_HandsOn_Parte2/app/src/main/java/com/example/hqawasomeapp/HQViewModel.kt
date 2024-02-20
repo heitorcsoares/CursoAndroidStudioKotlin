@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.hqawasomeapp.HQDetails.HQDetails
 import com.example.hqawasomeapp.hqHome.ComicService
-import com.example.hqawasomeapp.placeholder.PlaceholderContent
 import com.example.hqawasomeapp.ApiCredentials
+import com.example.hqawasomeapp.placeholder.PlaceholderContent
 import com.example.hqawasomeapp.placeholder.PlaceholderContent.PlaceholderItem
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -24,7 +24,8 @@ class HQViewModel : ViewModel() {
     private val _hqListLiveData = MutableLiveData<MutableList<PlaceholderItem>>()
 
     /** LiveData - navigationDETAIL */
-    val navigationToDetailLiveData get() = _navigationToDetailLiveData
+    val navigationToDetailLiveData
+        get() = _navigationToDetailLiveData
     private val _navigationToDetailLiveData = MutableLiveData<Unit>()
 
     private val retrofit = Retrofit.Builder()
