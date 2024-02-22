@@ -14,6 +14,7 @@
             android:id="@+id/action_HQFragment_to_HQDetailsFragment"
             app:destination="@id/HQDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/HQDetailsFragment"
         android:name="com.example.hqawasomeapp.HQDetails.HQDetailsFragment"

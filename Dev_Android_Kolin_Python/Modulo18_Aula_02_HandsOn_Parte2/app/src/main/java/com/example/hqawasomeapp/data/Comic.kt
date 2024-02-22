@@ -9,4 +9,17 @@ data class Comic(
     val description: String?,
     val textObject: List<TextObject>?,
     val thumbnail: Image?
-)
+){
+    fun getContent(): String{
+        return when{
+            description?.isNotEmpty() == true -> description
+            textObject?.isNotEmpty() == true -> textObject[0].text ?: "Conteudo não disponivel."
+            else -> "Conteudo não disponivel."
+        }
+    }
+
+    fun getIdString(): String {
+        return id?.toString() ?: ""
+    }
+}
+

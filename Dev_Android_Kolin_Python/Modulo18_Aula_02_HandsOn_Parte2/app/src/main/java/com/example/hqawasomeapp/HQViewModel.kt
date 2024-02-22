@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.hqawasomeapp.HQDetails.HQDetails
 import com.example.hqawasomeapp.hqHome.ComicService
-import com.example.hqawasomeapp.ApiCredentials
-import com.example.hqawasomeapp.placeholder.PlaceholderContent
-import com.example.hqawasomeapp.placeholder.PlaceholderContent.PlaceholderItem
+import com.example.hqawasomeapp.data.Comic
+import com.example.hqawasomeapp.data.ComicResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -19,9 +21,9 @@ class HQViewModel : ViewModel() {
     private val _hqDetailsLiveData = MutableLiveData<HQDetails>()
 
     /** LiveData - LIST */
-    val hqListLiveData: LiveData<MutableLiveData<PlaceholderItem>>
-        get() = hqListLiveData
-    private val _hqListLiveData = MutableLiveData<MutableList<PlaceholderItem>>()
+    val hqListLiveData: LiveData<List<Comic>?>
+        get() = _hqListLiveData
+    private val _hqListLiveData = MutableLiveData<List<Comic>?>()
 
     /** LiveData - navigationDETAIL */
     val navigationToDetailLiveData
@@ -36,7 +38,7 @@ class HQViewModel : ViewModel() {
     private val comicService = retrofit.create(ComicService::class.java)
 
     init {
-        _hqListLiveData.postValue(PlaceholderContent.ITEMS)
+        getHqData()
     }
 
     fun onHQSelected(position: Int) {
@@ -45,12 +47,27 @@ class HQViewModel : ViewModel() {
         _navigationToDetailLiveData.postValue(Unit)
     }
 
-    fun getHqData(){
+    private fun getHqData(){
         val timestamp = ApiHelper.getCurrentTimeStamp()
-        val input = "$timestamp${ApiCredentials.privatakey}${ApiCredentials.publickey}"
+        val input = "$timestamp${ApiCredentials.privatekey}${ApiCredentials.publickey}"
         val hash = ApiHelper.generateMD5Hash(input)
 
-        comicService.getComicsList(timestamp,ApiCredentials.publickey,hash,100)
+        comicService.getComicList(timestamp,ApiCredentials.publickey,hash,100)
+            .enqueue(object: Callback<ComicResponse>{
+                override fun onResponse(
+                    call: Call<ComicResponse>,
+                    response: Response<ComicResponse>
+                ) {
+                    if(response.isSuccessful) {
+                        _hqListLiveData.postValue(response.body()?.data?.result)
+                    }
+                }
+
+                override fun onFailure(call: Call<ComicResponse>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
     }
 
 }
