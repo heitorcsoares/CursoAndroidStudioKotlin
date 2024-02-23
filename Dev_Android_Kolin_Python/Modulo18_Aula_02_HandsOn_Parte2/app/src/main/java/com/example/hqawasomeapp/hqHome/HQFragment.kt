@@ -56,3 +56,4 @@ class HQFragment : Fragment(), HQItemListener {
         viewModel.onHQSelected(position)
     }
 }
+
