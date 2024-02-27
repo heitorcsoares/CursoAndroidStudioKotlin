@@ -3,7 +3,7 @@ package com.example.hqawasomeapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.hqawasomeapp.HQDetails.HQDetails
+import com.example.hqawasomeapp.hqDetails.HQDetails
 import com.example.hqawasomeapp.hqHome.ComicService
 import com.example.hqawasomeapp.data.Comic
 import com.example.hqawasomeapp.data.ComicResponse
