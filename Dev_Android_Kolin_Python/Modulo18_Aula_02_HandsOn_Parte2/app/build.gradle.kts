@@ -84,7 +84,7 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")        //GLIDE
 
 
-    /** IMPLEMENTAÇÃO NAVEGAÇÃO
+    /** IMPLEMENTAÇÃO NAVEGAÇÃO */
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
@@ -97,5 +97,5 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:2.7.7")
-     */
+
 }
