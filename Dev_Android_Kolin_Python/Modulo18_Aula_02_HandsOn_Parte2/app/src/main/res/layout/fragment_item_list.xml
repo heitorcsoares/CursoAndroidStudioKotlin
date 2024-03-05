@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    android:name="com.example.hqawasomeapp.hqFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="0dp"
-    android:layout_marginRight="0dp"
-    android:background="#4E4B4B"
-    android:backgroundTint="#4E4B4B"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".hqHome.HQFragment"
-    tools:listitem="@layout/fragment_item" />
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:name="com.example.hqawasomeapp.hqFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#4E4B4B"
+        android:backgroundTint="#4E4B4B"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".hqHome.HQFragment"
+        tools:listitem="@layout/fragment_item" />
+</layout>
