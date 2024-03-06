@@ -3,8 +3,8 @@ package com.example.hqawasomeapp.hqHome
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.hqawasomeapp.databinding.FragmentItemBinding
 import com.example.hqawasomeapp.data.Comic
+import com.example.hqawasomeapp.databinding.FragmentItemBinding
 
 /** Mantem a (Interface) depois dos (import) */
 interface HQItemListener {

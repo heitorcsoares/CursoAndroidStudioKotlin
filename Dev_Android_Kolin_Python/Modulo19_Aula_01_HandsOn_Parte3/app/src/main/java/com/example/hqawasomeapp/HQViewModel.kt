@@ -23,7 +23,7 @@ class HQViewModel : ViewModel() {
 
     /** LiveData - LIST */
     val hqListLiveData: LiveData<List<Comic>?>
-        get() = _hqListLiveData
+        get() = _hqListLiveData                                     //Escuta por alteração
     private val _hqListLiveData = MutableLiveData<List<Comic>?>()
 
     /** Estado do App (Sucesso ERRO Carregando) */
