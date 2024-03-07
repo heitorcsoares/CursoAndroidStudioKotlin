@@ -22,13 +22,12 @@
             android:minHeight="350dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/back"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#FDFDFD">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageView"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
                     android:scaleType="centerCrop"
@@ -56,11 +55,11 @@
                     android:layout_marginTop="20dp"
                     android:textAppearance="?attr/textAppearanceListItem"
                     android:textColor="#FFFFFF"
-                    android:text="@{hqItem.idString}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@{hqItem.idString}" />
 
                 <TextView
                     android:id="@+id/content"
@@ -68,11 +67,11 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
                     android:layout_marginTop="15dp"
-                    android:text="@{hqItem.content}"
                     android:textAppearance="?attr/textAppearanceListItem"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    android:text="@{hqItem.content}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

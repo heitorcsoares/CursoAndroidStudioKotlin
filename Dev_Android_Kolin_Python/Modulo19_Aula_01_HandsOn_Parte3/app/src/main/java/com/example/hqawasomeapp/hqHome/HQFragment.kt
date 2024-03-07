@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,7 @@ import com.example.hqawasomeapp.databinding.FragmentItemBinding
 class HQFragment : Fragment(), HQItemListener {
 
     private lateinit var adapter: MyhqRecyclerViewAdapter
-    private val viewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) { defaultViewModelProviderFactory }
+    private val viewModel: ViewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) { defaultViewModelProviderFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
