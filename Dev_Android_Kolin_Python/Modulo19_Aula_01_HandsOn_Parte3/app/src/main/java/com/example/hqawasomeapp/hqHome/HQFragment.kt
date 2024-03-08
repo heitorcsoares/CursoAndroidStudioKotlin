@@ -13,17 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hqawasomeapp.HQViewModel
 import com.example.hqawasomeapp.R
 import com.example.hqawasomeapp.databinding.FragmentItemBinding
+import com.example.hqawasomeapp.databinding.FragmentItemListBinding
 
 class HQFragment : Fragment(), HQItemListener {
 
     private lateinit var adapter: MyhqRecyclerViewAdapter
-    private val viewModel: ViewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) { defaultViewModelProviderFactory }
+    private val viewModel: HQViewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) { defaultViewModelProviderFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentItemBinding.inflate(inflater)
+        val binding = FragmentItemListBinding.inflate(inflater)
 
         val view = binding.root
         val recyclerView = binding.list
