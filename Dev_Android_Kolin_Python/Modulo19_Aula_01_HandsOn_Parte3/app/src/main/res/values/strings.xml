@@ -6,5 +6,7 @@
     <string name="share_button_title">Compartilhar</string>
 
     <string name="error_msg">Ops, aconteceu um erro.</string>
+
+    <string name="main">Acitivity_main.</string>
     
 </resources>

@@ -4,21 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hqawasomeapp.HQViewModel
 import com.example.hqawasomeapp.R
-import com.example.hqawasomeapp.databinding.FragmentItemBinding
 import com.example.hqawasomeapp.databinding.FragmentItemListBinding
 
 class HQFragment : Fragment(), HQItemListener {
 
     private lateinit var adapter: MyhqRecyclerViewAdapter
-    private val viewModel: HQViewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) { defaultViewModelProviderFactory }
+    private val viewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) { defaultViewModelProviderFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,17 +26,19 @@ class HQFragment : Fragment(), HQItemListener {
         val binding = FragmentItemListBinding.inflate(inflater)
 
         val view = binding.root
-        val recyclerView = binding.list
+        val recycleView = binding.list
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         adapter = MyhqRecyclerViewAdapter(this)
 
-        recyclerView.apply {
+        recycleView.apply {
              this.adapter = this@HQFragment.adapter
              this.layoutManager = LinearLayoutManager(context)
         }
+
+        Toast.makeText(context, "Bem-vindo!", Toast.LENGTH_SHORT).show()
 
         initObservers()
 
@@ -50,7 +51,6 @@ class HQFragment : Fragment(), HQItemListener {
             it?.let{
                 adapter.updateData(it)
             }
-
         })
 
         viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
