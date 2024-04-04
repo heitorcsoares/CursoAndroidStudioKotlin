@@ -14,7 +14,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class HQViewModel : ViewModel() {
+class HQViewModel : ViewModel() {                                   //extensão da classe ViewModel
 
     /** LiveData - DETAILS */
     val hqDetailsLiveData: LiveData<HQDetails>

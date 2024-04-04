@@ -4,7 +4,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class FilmesResponse(
-    val movieId: Int?,
-    val details: String?,
-    val images: String?
+    var latest: List<FilmeLatest>,
+    val details: List<FilmeDetails>,
+    val images: FilmeImages
 )

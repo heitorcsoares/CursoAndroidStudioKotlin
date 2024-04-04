@@ -9,25 +9,16 @@ interface FilmesService {
 
     @GET("/movie/latest")
     fun getListaFilmes(
-        @Query("ts") timeStamp: String,
-        @Query("apikey") API_KEY: String,
-        @Query("hash") hash: String,
-        @Query("limit") limit: Int
-    ) : Call<FilmesResponse>
+        @Query("api_key") apikey: String
+    ): Call<FilmesResponse>
 
     @GET("/movie/{movie_id}")
     fun getDetalhesFilme(
-        @Query("ts") timeStamp: String,
-        @Query("apikey") API_KEY: String,
-        @Query("hash") hash: String,
-        @Query("limit") limit: Int
+        @Query("api_key") apikey: String
     ) : Call<FilmesResponse>
 
     @GET("/movie/{movie_id}/images")
     fun getImagemPosteres(
-        @Query("ts") timeStamp: String,
-        @Query("apikey") API_KEY: String,
-        @Query("hash") hash: String,
-        @Query("limit") limit: Int
+        @Query("api_key") apikey: String
     ) : Call<FilmesResponse>
 }
