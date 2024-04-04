@@ -2,65 +2,70 @@ package com.example.filmes.filmesHome
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.filmes.FilmeViewModel
 import com.example.filmes.R
+import com.example.filmes.databinding.FragmentItemListBinding
 import com.example.filmes.placeholder.PlaceholderContent
-
 
 class FilmeItemFragment : Fragment(), FilmeItemListener {
 
-    private var columnCount = 1
+    private lateinit var adapter: MyfilmeRecyclerViewAdapter
     private val viewModel by navGraphViewModels<FilmeViewModel>(R.id.filmes_graph){defaultViewModelProviderFactory}
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+    ): View {
+        val binding = FragmentItemListBinding.inflate(inflater)
 
-        /** configurando adapter */
-        if (view is RecyclerView) {
-            val adapter = MyfilmeRecyclerViewAdapter(PlaceholderContent.ITEMS, this, requireParentFragment())   /**this -> referencia de instancia da Classe FilmesItemListener */
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                this.adapter = adapter
-            }
+        val view = binding.root
+        val recyclerView = binding.list
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        adapter = MyfilmeRecyclerViewAdapter(this)
+
+        recyclerView.apply {
+            this.adapter = this@FilmeItemFragment.adapter
+            this.layoutManager = LinearLayoutManager(context)
         }
+
+        Toast.makeText(context, "Bem Vindo!", Toast.LENGTH_SHORT).show()
+
+        initObservers()
+
         return view
     }
 
-    companion object {
+    private fun initObservers() {
 
-        const val ARG_COLUMN_COUNT = "column-count"
 
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            FilmeItemFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
+        /**
+        viewModel.filmeListLiveData.observe(viewLifecycleOwner, Observer {
+
+            it?.let{
+                adapter.updateData(it)
             }
+        })
+        */
+
+        viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer{
+            val action = FilmeDirections.action_filmetemFragment_to_filmeDetalhesFragment()
+            findNavController().navigate(action)
+        })
     }
 
     /** Função original (MyfilmeRecyclerViewAdapter | interface)  */
-    override fun onItemSelected(position: Int) {   }
-
+    override fun onItemSelected(position: Int) {
+        viewModel.onFilmeSelected(position)
+    }
 }

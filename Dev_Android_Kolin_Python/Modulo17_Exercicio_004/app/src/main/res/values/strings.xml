@@ -40,4 +40,6 @@
         </string>
     <string name="title_activity_tela_inicial">TelaInicial</string>
 
+    <string name="error_msg">Ops, aconteceu um erro.</string>
+
 </resources>

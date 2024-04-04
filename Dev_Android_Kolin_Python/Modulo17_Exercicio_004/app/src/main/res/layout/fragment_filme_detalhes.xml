@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="filmeDetalhes"
-            type="com.example.filmes.filmesDetalhes.FilmeDetalhes" />
+            name="viewModel"
+            type="com.example.filmes.FilmeViewModel" />
     </data>
 
     <FrameLayout
@@ -35,7 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"
-                android:text="@{filmeDetalhes.title}"
+                android:text="@{viewModel.loadFilmeDetalhes().title}"
                 android:textAlignment="center"
                 android:textColor="@color/cor01"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="15dp"
-                android:text="@{filmeDetalhes.content}"
+                android:text="@{viewModel.loadFilmeDetalhes().overview}"
                 android:textAlignment="center"
                 android:textColor="@color/cor01"
                 app:layout_constraintEnd_toEndOf="parent"

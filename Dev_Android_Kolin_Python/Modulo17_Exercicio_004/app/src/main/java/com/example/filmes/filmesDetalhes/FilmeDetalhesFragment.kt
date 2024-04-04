@@ -15,16 +15,10 @@ class FilmeDetalhesFragment : Fragment() {
 
     private val viewModel by navGraphViewModels<FilmeViewModel>(R.id.filmes_graph) {defaultViewModelProviderFactory}
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding: FragmentFilmeDetalhesBinding =
             DataBindingUtil.inflate(
@@ -35,7 +29,7 @@ class FilmeDetalhesFragment : Fragment() {
             )
 
         binding.lifecycleOwner = this
-        binding.filmeDetalhes = viewModel.loadFilmeDetalhes()
+        binding.viewModel = viewModel
 
         return binding.root
     }

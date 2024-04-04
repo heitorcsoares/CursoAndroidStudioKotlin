@@ -26,14 +26,14 @@ class HQFragment : Fragment(), HQItemListener {
         val binding = FragmentItemListBinding.inflate(inflater)
 
         val view = binding.root
-        val recycleView = binding.list
+        val recyclerView = binding.list
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         adapter = MyhqRecyclerViewAdapter(this)
 
-        recycleView.apply {
+        recyclerView.apply {
              this.adapter = this@HQFragment.adapter
              this.layoutManager = LinearLayoutManager(context)
         }
