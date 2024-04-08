@@ -11,6 +11,6 @@ interface FilmesService {
     fun getFilmesLista(
         @Query("api_key") apikey: String,
         @Query("limit") limit: Int
-    ): Call<FilmesResponse>                 //Tipo de retorno: Call-> 1º objeto que vai conter conteudo
+    ): Call<FilmesResponse>                                      //Tipo de retorno: Call-> 1º objeto que vai conter conteudo
 
 }
