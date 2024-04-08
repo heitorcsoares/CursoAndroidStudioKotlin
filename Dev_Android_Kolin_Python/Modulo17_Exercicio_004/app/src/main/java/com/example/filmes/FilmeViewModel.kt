@@ -3,6 +3,7 @@ package com.example.filmes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.filmes.data.DataState
 import com.example.filmes.data.FilmesLatest
 import com.example.filmes.filmesDetalhes.FilmeDetalhes
 import com.example.filmes.data.FilmesResponse
@@ -27,6 +28,11 @@ class FilmeViewModel : ViewModel() {
         get() = _filmesListaLiveData
     private val _filmesListaLiveData = MutableLiveData<List<FilmesLatest>?>()
 
+    /** Estado do App (Sucesso ERRO Carregando) */
+    val appState: LiveData<DataState>
+        get() =  _appState
+    private val _appState = MutableLiveData<DataState>()
+
     /** LiveData - RESPONSE */
     val filmesResponse: LiveData<List<FilmesResponse>?>
         get() = _filmesResponseLiveData                                              //Escuta por alteração
@@ -48,9 +54,16 @@ class FilmeViewModel : ViewModel() {
     private val filmesService = retrofit.create(FilmesService::class.java)
     /**  */
 
-
+    /** Executa o acesso ao API */
     init {
         getFilmesData()
+    }
+
+
+    fun onFilmeSelected(position: Int) {
+        val filmeDetalhes = FilmeDetalhes("Minha HQ", "Este é apenas texto")
+        _filmeDetalhesLiveData.postValue(filmeDetalhes)
+        _navigationToDetalhesLiveData.postValue(Unit)
     }
 
 
@@ -70,11 +83,14 @@ class FilmeViewModel : ViewModel() {
                 ) {
                     if(response.isSuccessful){
                         _filmesListaLiveData.postValue(response.body()?.)
+                        _appState.postValue(DataState.Success)
+                    }else{
+                        _appState.postValue(DataState.Error)
                     }
                 }
 
                 override fun onFailure(call: Call<FilmesResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    _appState.postValue(DataState.Error)
                 }
 
             })

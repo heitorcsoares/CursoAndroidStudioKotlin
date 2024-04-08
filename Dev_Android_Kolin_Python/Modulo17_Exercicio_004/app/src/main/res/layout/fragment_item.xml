@@ -5,7 +5,7 @@
     <data>
         <variable
             name="filmeItem"
-            type="com.example.filmes.data.FilmesResponse" />
+            type="com.example.filmes.data.FilmesLatest" />
     </data>
 
     <LinearLayout

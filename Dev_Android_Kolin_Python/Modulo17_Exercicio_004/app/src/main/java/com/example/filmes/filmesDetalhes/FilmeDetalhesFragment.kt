@@ -13,7 +13,7 @@ import com.example.filmes.databinding.FragmentFilmeDetalhesBinding
 
 class FilmeDetalhesFragment : Fragment() {
 
-    private val viewModel by navGraphViewModels<FilmeViewModel>(R.id.filmes_graph) {defaultViewModelProviderFactory}
+    private val viewModel by navGraphViewModels<FilmeViewModel>(R.id.filme_graph) {defaultViewModelProviderFactory}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

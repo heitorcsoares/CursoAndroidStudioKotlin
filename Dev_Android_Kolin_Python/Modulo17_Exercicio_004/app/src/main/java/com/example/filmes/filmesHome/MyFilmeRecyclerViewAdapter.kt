@@ -3,7 +3,7 @@ package com.example.filmes.filmesHome
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.filmes.data.FilmesResponse
+import com.example.filmes.data.FilmesLatest
 import com.example.filmes.databinding.FragmentItemBinding
 
 /** Mantem a (Interface) depois dos (import) */
@@ -15,10 +15,10 @@ class MyfilmeRecyclerViewAdapter(
     private val listener: FilmeItemListener
 ) : RecyclerView.Adapter<MyfilmeRecyclerViewAdapter.ViewHolder>() {
 
-    private var values: List<FilmesResponse> = ArrayList()
+    private var values: List<FilmesLatest> = ArrayList()
 
-    fun updateData(FilmeLatest: List<FilmesResponse>){
-        values = FilmeLatest
+    fun updateData(filmeList: List<FilmesLatest>){
+        values = filmeList
         notifyDataSetChanged()
     }
 
@@ -47,7 +47,7 @@ class MyfilmeRecyclerViewAdapter(
     inner class ViewHolder(private val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val view = binding.root
 
-        fun bindItem(item: FilmesResponse) {
+        fun bindItem(item: FilmesLatest) {
             binding.filmeItem = item
             binding.executePendingBindings()                                            //Atualiza os dados no momento.
         }
