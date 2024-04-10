@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Filmes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand Solor -->
+        <item name="colorPrimary">@color/themoviedb</item>
+        <item name="colorPrimaryVariant">@color/themoviedb_dark_grey</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand Solor -->
+        <item name="colorSecondary">@color/themoviedb</item>
+        <item name="colorSecondaryVariant">@color/themoviedb_dark_grey</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status ba color -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="Theme.Filmes" parent="Base.Theme.Filmes" />
+</resources>
