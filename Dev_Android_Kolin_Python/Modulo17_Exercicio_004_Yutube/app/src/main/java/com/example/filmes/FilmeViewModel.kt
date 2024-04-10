@@ -32,9 +32,9 @@ class FilmeViewModel : ViewModel(){
     private val _appState = MutableLiveData<DataState>()
 
     /** LiveData - RESPONSE */
-    val filmesResponse: LiveData<List<FilmesResponse>?>
+    val filmesResponse: LiveData<List<FilmesLatest>?>
         get() = _filmesResponseLiveData                                              //Escuta por alteração
-    private val _filmesResponseLiveData = MutableLiveData<List<FilmesResponse>?>()
+    private val _filmesResponseLiveData = MutableLiveData<List<FilmesLatest>?>()
 
     /** LiveData - navigationDETAIL */
     val navigationToDetalhesLiveData
@@ -73,13 +73,13 @@ class FilmeViewModel : ViewModel(){
     /**  Função Dados dos Filmes da API - Trata resposta (sucesso/falha) */
     private fun getFilmesData() {
         filmesService.getFilmesLista(ApiCredentials.API_KEY, limit = 100)
-            .enqueue(object : Callback<FilmesResponse> {
+            .enqueue(object : Callback<FilmesLatest> {
                 override fun onResponse(
-                    call: Call<FilmesResponse>,
-                    response: Response<FilmesResponse>
+                    call: Call<FilmesLatest>,
+                    response: Response<FilmesLatest>
                 ) {
                     if (response.isSuccessful) {
-                        //_filmesListaLiveData.postValue(response.body()?.status_message)           //verificar campo de resposta !
+                        _filmesListaLiveData.postValue(response.body()?.id)           //verificar campo de resposta !
                         _appState.postValue(DataState.Success)
                     }else{
                         _appState.postValue(DataState.Error)
@@ -87,7 +87,7 @@ class FilmeViewModel : ViewModel(){
 
                 }
 
-                override fun onFailure(call: Call<FilmesResponse>, t: Throwable) {
+                override fun onFailure(call: Call<FilmesLatest>, t: Throwable) {
                     _appState.postValue(DataState.Error)
                 }
             })
