@@ -26,7 +26,7 @@ class HQViewModel : ViewModel() {                                   //extensão 
         get() = _hqListLiveData                                     //Escuta por alteração
     private val _hqListLiveData = MutableLiveData<List<Comic>?>()
 
-    /** Estado do App (Sucesso ERRO Carregando) */
+    /** Estado do App (Sucesso/ERRO/Carregando) Utilizado no (fragment_item_list.xml) */
     val appState: LiveData<DataState>
         get() =  _appState
     private val _appState = MutableLiveData<DataState>()
@@ -45,7 +45,7 @@ class HQViewModel : ViewModel() {                                   //extensão 
 
     /** Executa ao acessar o APP */
     init {
-        _appState.postValue(DataState.Loading)                                                       //configura o Estado Loading ao App inicialmente
+        _appState.postValue(DataState.Loading)                          //configura o Estado (Loading - carregando) ao AppState inicialmente.
         getHqData()
     }
 
@@ -67,7 +67,7 @@ class HQViewModel : ViewModel() {                                   //extensão 
                     response: Response<ComicResponse>
                 ) {
                     if(response.isSuccessful) {
-                        _hqListLiveData.postValue(response.body()?.data?.result)
+                        _hqListLiveData.postValue(response.body()?.data?.results)
                         _appState.postValue(DataState.Success)                                      //configura o Estado SUCESSS ao App
                     }else{
                         _appState.postValue(DataState.Error)                                        //configura o Estado ERRO ao App inicialmente

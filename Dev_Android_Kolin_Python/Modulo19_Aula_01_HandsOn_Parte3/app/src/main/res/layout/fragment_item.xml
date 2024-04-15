@@ -24,7 +24,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="#FDFDFD">
+                android:backgroundTint="#FDFDFD"
+                tools:ignore="ExtraText">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -35,17 +36,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcUrl='@{hqItem.imageUrl ?? ""}' />
+                // srcUrl -> ViewBinders.kt • verifica imagem nula (inexitente ??)
+
 
                 <Button
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/share_button_title"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/content" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/item_number"
@@ -63,15 +65,19 @@
 
                 <TextView
                     android:id="@+id/content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@{hqItem.content}"
                     android:textAppearance="?attr/textAppearanceListItem"
+                    app:layout_constraintBottom_toTopOf="@+id/button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView"
-                    android:text="@{hqItem.content}" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

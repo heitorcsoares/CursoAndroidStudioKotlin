@@ -8,5 +8,5 @@ data class ComicContainer(
     val limit: Int?,
     val total: Int?,
     val count: Int?,
-    val result: List<Comic>?
+    val results: List<Comic>?
 )

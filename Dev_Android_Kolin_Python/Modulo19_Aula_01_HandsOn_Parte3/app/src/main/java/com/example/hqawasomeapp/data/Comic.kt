@@ -7,13 +7,13 @@ data class Comic(
     val id: Int?,
     val title: String?,
     val description: String?,
-    val textObject: List<TextObject>?,
+    val textObjects: List<TextObject>?,
     val thumbnail: Image?
 ){
     fun getContent(): String{
         return when{
             description?.isNotEmpty() == true -> description
-            textObject?.isNotEmpty() == true -> textObject[0].text ?: "Conteudo não disponivel."
+            textObjects?.isNotEmpty() == true -> textObjects[0].text ?: "Conteudo não disponivel."
             else -> "Conteudo não disponivel."
         }
     }
@@ -22,6 +22,8 @@ data class Comic(
         return id?.toString() ?: ""
     }
 
+    /** Função recupera o caminho completo da imagem
+     * Utiliza (?) operador de chamada segura caso imagem seja NULA.  * */
     fun getImageUrl() = thumbnail?.getFullImagePath()
 
 }

@@ -7,6 +7,8 @@ data class Image(
     val path: String?,
     val extension: String?
 ){
+
+    /** •Converte http em https | •retorna PathHttps+extensão formando a URL completa da Imagem  */
     fun getFullImagePath(): String {
         val pathHttps = path?.replace("http", "https")
 
