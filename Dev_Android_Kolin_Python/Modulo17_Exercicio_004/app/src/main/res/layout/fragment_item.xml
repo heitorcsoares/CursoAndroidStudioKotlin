@@ -5,7 +5,7 @@
     <data>
         <variable
             name="filmeItem"
-            type="com.example.filmes.placeholder.PlaceholderContent.PlaceholderItem" />
+            type="com.example.filmes.data.Filmes" />
     </data>
 
     <LinearLayout
@@ -35,7 +35,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/img_batman" />
+                    app:srcCompat='@{filmeItem.poster_path ?? ""}' />
 
                 <Button
                     android:id="@+id/button"
@@ -51,21 +51,21 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/titulo"
+                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_margin="@dimen/text_margin"
                     android:layout_marginTop="20dp"
                     android:textAppearance="?attr/textAppearanceListItem"
                     android:textColor="#FFFFFF"
-                    android:text="@{filmeItem.id}"
+                    android:text="@{filmeItem.title}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/conteudo"
+                    android:id="@+id/overview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
@@ -73,7 +73,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:textAlignment="center"
-                    android:text = "@{filmeItem.content}"
+                    android:text = "@{filmeItem.overview}"
                     android:textColor="@color/cor01"
                     android:textAppearance="?attr/textAppearanceListItem"
                     app:layout_constraintEnd_toEndOf="parent"

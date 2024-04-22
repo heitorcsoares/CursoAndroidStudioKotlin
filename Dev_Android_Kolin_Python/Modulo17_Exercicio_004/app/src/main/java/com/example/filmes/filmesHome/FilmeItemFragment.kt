@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.filmes.FilmeViewModel
-import com.example.filmes.databinding.FragmentItemBinding
+import com.example.filmes.viewModel.FilmeViewModel
 import com.example.filmes.R
+import com.example.filmes.databinding.FragmentItemListBinding
 
 class FilmeItemFragment : Fragment(), FilmeItemListener {
 
     private lateinit var adapter: MyfilmeRecyclerViewAdapter
-    private val viewModel by navGraphViewModels<FilmeViewModel>(R.id.filmes_graph){defaultViewModelProviderFactory}
+    private val viewModel by navGraphViewModels<FilmeViewModel>(R.id.filmes_graph) {defaultViewModelProviderFactory}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentItemBinding.inflate(inflater)
+        val binding = FragmentItemListBinding.inflate(inflater)
 
         val view = binding.root
         val recyclerView = binding.list
@@ -55,7 +55,7 @@ class FilmeItemFragment : Fragment(), FilmeItemListener {
         })
 
         viewModel.navigationToDetalhesLiveData.observe(viewLifecycleOwner, Observer {
-            val action = FilmeItemFragmentDirections.actionFilmesFragmentToFilmesDetalhesFragment()
+            val action = FilmeItemFragmentDirections.actionfilmeItemFragmentToFilmeDetalhesFragment()
             findNavController().navigate(action)
         })
     }

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.navGraphViewModels
-import com.example.filmes.FilmeViewModel
+import com.example.filmes.viewModel.FilmeViewModel
 import com.example.filmes.R
 import com.example.filmes.databinding.FragmentFilmeDetalhesBinding
 

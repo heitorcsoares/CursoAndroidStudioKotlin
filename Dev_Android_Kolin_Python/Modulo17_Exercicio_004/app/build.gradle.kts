@@ -84,14 +84,15 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    // navigation components
+
+    // NAVIGATION components
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
-    // Lifecycle components
+    // Lifecycle components -> Extensão de ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-common-java8:2.7.0")
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.core:core-ktx:1.12.0")
 
@@ -101,16 +102,32 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0")        //Carousel de imagens
 
-    // RETROFIT e MOSHI
+    // RETROFIT e MOSHI -> Rede / Network padrão Android. Consumo de API
     implementation("com.squareup.retrofit2:retrofit:2.9.0")                 // RETROFIT
     implementation("com.squareup.moshi:moshi-kotlin:1.15.0")                // MOSHI
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    // OKhttp -> Log de Requisições
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    //
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")             // RETORFIT com MOSHI
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // GLIDE ->
+    implementation("com.github.bumptech.glide:glide:4.13.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
+
+    // KAP ->
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")                  //KAP
-    implementation("com.github.bumptech.glide:glide:4.13.1")                //GLIDE
-    annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")        //GLIDE
+
+    // Test
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 }
