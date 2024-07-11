@@ -11,7 +11,6 @@ import com.example.filmes.R
 import com.example.filmes.databinding.FragmentFilmeDetalhesBinding
 import com.example.filmes.viewModel.FilmeViewModel
 
-
 class FilmeDetalhesFragment : Fragment() {
 
     private val viewModel by navGraphViewModels<FilmeViewModel>(R.id.filmes_graph) {defaultViewModelProviderFactory}
