@@ -3,6 +3,8 @@ package com.example.hqawasomeapp.hqHome
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import com.example.hqawasomeapp.R
 import com.example.hqawasomeapp.data.Comic
 import com.example.hqawasomeapp.databinding.FragmentItemBinding
 
@@ -39,6 +41,7 @@ class MyhqRecyclerViewAdapter(
 
         holder.view.setOnClickListener {
             listener.onItemSelected(position)
+
         }
     }
 

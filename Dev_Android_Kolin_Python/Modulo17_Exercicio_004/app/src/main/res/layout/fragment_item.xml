@@ -35,7 +35,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat='@{filmeItem.poster_path ?? ""}' />
+                    app:srcCompat="@drawable/img_batman" />
+
 
                 <Button
                     android:id="@+id/button"
