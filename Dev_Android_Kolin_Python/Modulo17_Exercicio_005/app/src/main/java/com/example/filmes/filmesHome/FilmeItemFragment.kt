@@ -45,10 +45,19 @@ class FilmeItemFragment : Fragment(), FilmeItemListener {
 
         Toast.makeText(context, "Bem-vindo!", Toast.LENGTH_SHORT).show()
 
-        initObservers()
+        //initObservers()
 
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val navController = findNavController()
+
+        initObservers()
+    }
+
 
     private fun initObservers() {
         viewModel.filmesListaLiveData.observe(viewLifecycleOwner, Observer {
