@@ -45,7 +45,7 @@ class FilmeItemFragment : Fragment(), FilmeItemListener {
 
         Toast.makeText(context, "Bem-vindo!", Toast.LENGTH_SHORT).show()
 
-        //initObservers()
+        /** initObservers() */
 
         return view
     }
@@ -77,5 +77,4 @@ class FilmeItemFragment : Fragment(), FilmeItemListener {
     override fun onItemSelected(position: Int) {
         viewModel.onFilmeSelected(position)
     }
-
 }
