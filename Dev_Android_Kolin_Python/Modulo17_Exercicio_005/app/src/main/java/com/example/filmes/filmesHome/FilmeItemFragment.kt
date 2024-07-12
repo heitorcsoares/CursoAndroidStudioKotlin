@@ -45,11 +45,12 @@ class FilmeItemFragment : Fragment(), FilmeItemListener {
 
         Toast.makeText(context, "Bem-vindo!", Toast.LENGTH_SHORT).show()
 
-        /** initObservers() */
+         initObservers()
 
         return view
     }
 
+    /**
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,6 +58,7 @@ class FilmeItemFragment : Fragment(), FilmeItemListener {
 
         initObservers()
     }
+     */
 
 
     private fun initObservers() {
