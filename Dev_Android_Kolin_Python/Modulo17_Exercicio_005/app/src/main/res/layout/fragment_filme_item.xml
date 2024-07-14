@@ -48,7 +48,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/item_number"
+                    android:id="@+id/item_title"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_margin="@dimen/text_margin"
@@ -59,10 +59,10 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="NUMERO" />
+                    android:text="@{filmeItem.title}" />
 
                 <TextView
-                    android:id="@+id/content"
+                    android:id="@+id/item_overview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
@@ -70,7 +70,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
-                    android:text="TEXTO"
+                    android:text="@{filmeItem.overview}"
                     android:textAppearance="?attr/textAppearanceListItem"
                     app:layout_constraintBottom_toTopOf="@+id/button"
                     app:layout_constraintEnd_toEndOf="parent"

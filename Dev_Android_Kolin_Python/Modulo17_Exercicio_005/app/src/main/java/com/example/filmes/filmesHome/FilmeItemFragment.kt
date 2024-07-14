@@ -50,17 +50,6 @@ class FilmeItemFragment : Fragment(), FilmeItemListener {
         return view
     }
 
-    /**
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val navController = findNavController()
-
-        initObservers()
-    }
-     */
-
-
     private fun initObservers() {
         viewModel.filmesListaLiveData.observe(viewLifecycleOwner, Observer {
 

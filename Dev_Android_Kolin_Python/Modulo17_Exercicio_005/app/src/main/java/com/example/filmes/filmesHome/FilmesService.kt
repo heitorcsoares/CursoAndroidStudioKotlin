@@ -10,7 +10,7 @@ interface FilmesService {
 
     @GET("https://api.themoviedb.org/3/movie/now_playing")
     fun getFilmesLista(
-        @Query("API_KEY") apikey: String = ApiCredentials.API_KEY
+        @Query("api_key") apikey: String = ApiCredentials.API_KEY
     ) : Call<FilmesResponse>
 
 }

@@ -8,7 +8,7 @@ class Filmes (
     val id: Int?,
     val title: String?,
     val overview_: String?,
-    val popularity: Int?,
+    val popularity: Double?,
     val poster_path: String
 ){
 
