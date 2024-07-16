@@ -2,16 +2,20 @@ package com.example.filmes.filmesHome
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.runtime.snapshots.Snapshot.Companion.observe
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.filmes.R
 import com.example.filmes.databinding.FragmentFilmeItemListBinding
+import com.example.filmes.filmesHome.placeholder.PlaceholderContent
 import com.example.filmes.viewModel.FilmeViewModel
 
 
