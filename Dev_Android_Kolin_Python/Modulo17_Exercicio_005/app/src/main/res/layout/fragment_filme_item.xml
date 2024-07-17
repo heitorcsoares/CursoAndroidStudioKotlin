@@ -35,7 +35,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/img_batman"/>
+                    app:srcUrl='@{filmeItem.fullImagePath ?? ""}' />
 
                 <Button
                     android:id="@+id/button"

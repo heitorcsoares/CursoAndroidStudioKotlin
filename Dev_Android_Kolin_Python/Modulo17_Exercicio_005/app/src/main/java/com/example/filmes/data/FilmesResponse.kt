@@ -3,7 +3,7 @@ package com.example.filmes.data
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class FilmesResponse (
+data class FilmesResponse (
 
     val results: List<Filmes>?
 

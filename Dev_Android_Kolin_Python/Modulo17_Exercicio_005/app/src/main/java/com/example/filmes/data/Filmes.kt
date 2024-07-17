@@ -4,7 +4,7 @@ import com.example.filmes.api.ApiCredentials
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class Filmes (
+data class Filmes (
     val id: Int?,
     val title: String?,
     val overview: String?,
@@ -22,11 +22,11 @@ class Filmes (
 
     /** Caminho para Imagem de Capa */
     fun getFullImagePath(): String {
-        val pathHttps = ApiCredentials.BASE_URL
-        val pathImagem = "/images"
+        val pathHttps = ApiCredentials.IMG_POSTER
 
-        return "$pathHttps.$poster_path.$pathImagem"
+        return "$pathHttps$poster_path"
     }
+
 }
 
 /** https://api.themoviedb.org/3/movie/{movie_id}/images */

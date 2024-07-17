@@ -6,6 +6,7 @@ class ApiCredentials {
         const val API_KEY = "b2b5010b0352ebd874753d40f095a118"
         const val BASE_URL = "https://api.themoviedb.org/3/"
         const val LISTA_URL = "https://api.themoviedb.org/3/movie/latest"
+        const val IMG_POSTER = "https://api.themoviedb.org/3/movie/now_playing"
         const val AUTHENTICATION = "https://api.themoviedb.org/3/authentication"
     }
 
