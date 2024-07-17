@@ -7,15 +7,15 @@ import com.squareup.moshi.JsonClass
 class Filmes (
     val id: Int?,
     val title: String?,
-    val overview_: String?,
+    val overview: String?,
     val popularity: Double?,
     val poster_path: String
 ){
 
     /** Verifica se há conteudo na Descrição do Filme */
-    fun getOverview(): String{
+    fun getOverview(): String {
         return when{
-            overview_?.isNotEmpty() == true -> overview_?: "Conteudo não disponivel."
+            overview?.isNotEmpty() == true -> overview
             else -> "Conteudo não disponivel. Volte mais tarde."
         }
     }

@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface FilmesService {
 
-    @GET("https://api.themoviedb.org/3/movie/now_playing")
+    @GET("https://api.themoviedb.org/3/movie/latest")
     fun getFilmesLista(
         @Query("api_key") apikey: String = ApiCredentials.API_KEY
     ) : Call<FilmesResponse>
