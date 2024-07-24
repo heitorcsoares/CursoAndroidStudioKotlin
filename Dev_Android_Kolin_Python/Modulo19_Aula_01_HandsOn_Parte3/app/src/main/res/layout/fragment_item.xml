@@ -31,13 +31,12 @@
                     android:id="@+id/imageView"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
+                    android:contentDescription="Imagem do Filme"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcUrl='@{hqItem.imageUrl ?? ""}' />
-                // srcUrl -> ViewBinders.kt • verifica imagem nula (inexitente ??)
-
 
                 <Button
                     android:id="@+id/button"
