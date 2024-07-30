@@ -41,7 +41,7 @@ class HQViewModel : ViewModel() {                                   //extensão 
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
-    private val comicService = retrofit.create(ComicService::class.java)
+    private val comicService = retrofit.create(ComicService::class.java)        //Faz a chamada e receber os dados
 
     /** Executa ao acessar o APP */
     init {

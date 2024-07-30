@@ -27,4 +27,3 @@ data class Comic(
     fun getImageUrl() = thumbnail?.getFullImagePath()
 
 }
-

@@ -7,7 +7,7 @@ import java.sql.Timestamp
 class ApiHelper {
 
     companion object{
-        fun getCurrentTimeStamp() = Timestamp(System.currentTimeMillis()).toString()
+        fun getCurrentTimeStamp() = Timestamp(System.currentTimeMillis()).toString()            //horario do sistema em MilliSegundos
 
         fun generateMD5Hash(input: String) : String {
             val md = MessageDigest.getInstance("MD5")

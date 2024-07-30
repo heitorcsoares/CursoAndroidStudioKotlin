@@ -77,11 +77,11 @@ dependencies {
 
     // RETROFIT e MOSHI
     implementation("com.squareup.retrofit2:retrofit:2.9.0")                 // RETROFIT
-    implementation("com.squareup.moshi:moshi-kotlin:1.15.0")                // MOSHI
+    implementation("com.squareup.moshi:moshi:1.15.0")                // MOSHI
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")          // RETORFIT com MOSHI
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")                  //KAP
 
-    //GLIDE
+    //GLIDE (Imagem da API)
     implementation("com.github.bumptech.glide:glide:4.13.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
 
