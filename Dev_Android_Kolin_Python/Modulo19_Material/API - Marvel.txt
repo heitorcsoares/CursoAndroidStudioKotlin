@@ -1,0 +1,15 @@
+Criar HASH:
+https://blueimp.github.io/JavaScript-MD5/
+https://www.youtube.com/watch?v=kHjnnEBVgw4
+https://developer.marvel.com/documentation/authorization
+https://developer.marvel.com/account
+md5(ts+privateKey+publicKey) -> 88f2d941cd14dd220298f5c8c211fdb0
+
+
+Teste de API
+https://www.postman.com
+https://www.youtube.com/watch?v=TPbkdp3hCcA
+
+
+
+
