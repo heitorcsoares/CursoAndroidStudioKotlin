@@ -59,14 +59,8 @@ class FilmeViewModel : ViewModel() {
         getFilmesData()
     }
 
-    fun onFilmeSelected(id: Int) {
-        val filme = filmeDetalhesLiveData[id]
-        val title = filme.title
-        val overview = filme.overview
-        val poster_path = filme.poster_path
-
-        val filmeDetalhes = FilmeDetalhes(title,overview,poster_path)
-        _filmeDetalhesLiveData.postValue(filmeDetalhes)
+    fun onFilmeSelected(position: Int) {
+        _appState.postValue(DataState.Loading)
         _navigationToDetalhesLiveData.postValue(Unit)
     }
 

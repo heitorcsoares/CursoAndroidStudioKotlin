@@ -9,6 +9,7 @@ class ApiCredentials {
         const val AUTHENTICATION = "https://api.themoviedb.org/3/authentication"
         const val DETAILS = "https://api.themoviedb.org/3/movie/"
         const val LANGUAGE ="?language=pt-BR"
+        const val imageUrl = "https://image.tmdb.org/t/p/w780/"
     }
 
 }
