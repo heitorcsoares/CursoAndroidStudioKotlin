@@ -5,6 +5,7 @@ import com.example.filmes.data.FilmesDetails
 import com.example.filmes.data.FilmesPosters
 import com.example.filmes.data.FilmesResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -26,11 +27,10 @@ interface FilmesService {
 
 
     @GET("https://api.themoviedb.org/3/movie/{movie_id}/images")
-    fun getMoviePosters(
+    fun getMovieImages(
         @Path("movie_id") movie_id: Int,
         @Query("api_key") api_key: String,
-        @Query("language") language: String,
-        @Query("include_image_language") include_image_language: String
+        @Query("language") language: String
     ) : Call<FilmesPosters>
 
 }

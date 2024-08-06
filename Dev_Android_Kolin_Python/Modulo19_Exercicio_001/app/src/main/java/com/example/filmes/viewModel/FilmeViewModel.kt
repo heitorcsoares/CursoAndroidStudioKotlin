@@ -10,6 +10,7 @@ import com.example.filmes.data.FilmesDetails
 import com.example.filmes.data.FilmesResponse
 import com.example.filmes.filmesDetalhes.FilmeDetalhes
 import com.example.filmes.filmesHome.FilmesService
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,9 +20,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class FilmeViewModel : ViewModel() {
 
     /** LiveData - DETAILS */
-    val filmeDetalhesLiveData: LiveData<FilmeDetalhes>
+    val filmeDetalhesLiveData: LiveData<FilmesDetails>
         get() = _filmeDetalhesLiveData
-    private val _filmeDetalhesLiveData = MutableLiveData<FilmeDetalhes>()
+    private val _filmeDetalhesLiveData = MutableLiveData<FilmesDetails>()
 
 
     /** LiveData - LISTA */
@@ -35,6 +36,10 @@ class FilmeViewModel : ViewModel() {
         get() =  _appState
     private val _appState = MutableLiveData<DataState>()
 
+    /** Carroseu */
+    val carouselImagesLiveData: LiveData<List<CarouselItem>?>
+        get() = _carouselImagesLiveData
+    private val _carouselImagesLiveData = MutableLiveData<List<CarouselItem>?>(null)
 
     /** LiveData - Navegação para Tela de Detalhes */
     val navigationToDetalhesLiveData
@@ -64,8 +69,7 @@ class FilmeViewModel : ViewModel() {
         _navigationToDetalhesLiveData.postValue(Unit)
     }
 
-
-    /**  Função Dados dos Filmes da API - Trata resposta (sucesso/falha) */
+    /**  função Kotlin usando Retrofit / fazer uma requisição GET */
     private fun getFilmesData() {
         filmesService.getFilmesLista(ApiCredentials.API_KEY)
             .enqueue(object : Callback<FilmesResponse> {
@@ -77,7 +81,7 @@ class FilmeViewModel : ViewModel() {
                     if (response.isSuccessful) {
                         _filmesListaLiveData.postValue(response.body()?.results)
                         _appState.postValue(DataState.Success)
-                    }else{
+                    } else {
                         _appState.postValue(DataState.Error)
                     }
                 }
@@ -87,5 +91,4 @@ class FilmeViewModel : ViewModel() {
                 }
             })
     }
-
 }

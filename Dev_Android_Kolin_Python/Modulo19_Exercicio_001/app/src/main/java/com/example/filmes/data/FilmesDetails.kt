@@ -4,7 +4,7 @@ import com.example.filmes.api.ApiCredentials
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class FilmesDetails (
+data class FilmesDetails (
     val id: Int?,
     val title: String?,
     val overview: String?,

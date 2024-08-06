@@ -8,17 +8,18 @@ import com.example.filmes.databinding.FragmentFilmeItemBinding
 
 /** Mantem a (Interface) depois dos (import) */
 interface FilmeItemListener {
-    fun onItemSelected(id: Int)
+    fun onItemSelected(position: Int)
 }
 
 class MyFilmeRecyclerViewAdapter(
     private val listener: FilmeItemListener
 ) : RecyclerView.Adapter<MyFilmeRecyclerViewAdapter.ViewHolder>() {
 
-    private var values: List<Filmes> = ArrayList()
+    private var values: MutableList<Filmes> = ArrayList()
 
     fun updateData(filmeList: List<Filmes>){
-        values = filmeList
+        values.clear()
+        values.addAll(filmeList)
         notifyDataSetChanged()
     }
 
@@ -32,21 +33,20 @@ class MyFilmeRecyclerViewAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, id: Int) {
-        val item = values[id]
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = values[position]
         holder.bindItem(item)           /** Chama função (bindItem->Inner class|MyhqRecyclerViewAdapter.kt) */
 
         /** ação para escutar click */
         holder.view.setOnClickListener {
-            listener.onItemSelected(id)
-
+            listener.onItemSelected(position)
         }
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(private val binding: FragmentFilmeItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: FragmentFilmeItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val view = binding.root
 
         fun bindItem(item: Filmes){
