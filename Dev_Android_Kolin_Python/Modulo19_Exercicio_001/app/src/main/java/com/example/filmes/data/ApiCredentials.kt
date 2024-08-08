@@ -1,4 +1,4 @@
-package com.example.filmes.api
+package com.example.filmes.data
 
 class ApiCredentials {
 
