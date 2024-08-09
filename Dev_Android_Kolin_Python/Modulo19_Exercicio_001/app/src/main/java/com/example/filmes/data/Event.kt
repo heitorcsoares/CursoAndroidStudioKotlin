@@ -2,14 +2,14 @@ package com.example.filmes.data
 
 class Event<out T>(private val content: T) {
 
-    var hasBeenHandler = false
-        private set
+    var hasBeenHandle = false
+        private set // Anyone outside can read this value but cannot set it
 
-    fun getContentIfNotHandled(): T? {
-        return if (hasBeenHandler) {
+    fun getContentIfNotHandle(): T? {
+        return if (hasBeenHandle) {
             null
         } else {
-            hasBeenHandler = true
+            hasBeenHandle = true
             content
         }
     }

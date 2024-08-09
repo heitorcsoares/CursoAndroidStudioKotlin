@@ -20,16 +20,14 @@ interface FilmesService {
     @GET("https://api.themoviedb.org/3/movie/{movie_id}")
     suspend fun getMovieDetails(
         @Path("movie_id") movie_id: Int,
-        @Query("api_key") api_key: String,
-        @Query("language") language: String
+        @Query("api_key") api_key: String
     ) : Response<FilmesDetails>
 
 
     @GET("https://api.themoviedb.org/3/movie/{movie_id}/images")
     suspend fun getMovieImages(
         @Path("movie_id") movie_id: Int,
-        @Query("api_key") api_key: String,
-        @Query("language") language: String
+        @Query("api_key") api_key: String
     ) : Response<FilmesPosters>
 
 }

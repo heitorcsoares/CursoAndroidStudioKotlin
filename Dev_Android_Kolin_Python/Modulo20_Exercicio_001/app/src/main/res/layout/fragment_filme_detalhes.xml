@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.example.filmes.data.DataState" />
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.example.filmes.viewModel.FilmeViewModel" />
@@ -13,6 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".filmesDetalhes.FilmeDetalhesFragment">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.DataStateLiveData == DataState.Loading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/imageCarousel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -47,7 +61,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
-            android:text='@{"Descrição do Filme:  "+ viewModel.filmeDetalhesLiveData.overview}'
+            android:text='@{viewModel.filmeDetalhesLiveData.overview}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hqTitle" />

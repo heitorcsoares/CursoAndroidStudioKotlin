@@ -18,7 +18,8 @@ class MyFilmeRecyclerViewAdapter(
     private var values: MutableList<Filmes> = ArrayList()
 
     fun updateData(filmeList: List<Filmes>){
-        values = filmeList
+        values.clear()
+        values.addAll(filmeList)
         notifyDataSetChanged()
     }
 

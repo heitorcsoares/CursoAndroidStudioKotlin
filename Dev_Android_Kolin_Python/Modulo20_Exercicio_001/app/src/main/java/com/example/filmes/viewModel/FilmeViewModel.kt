@@ -21,6 +21,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+import com.example.filmes.data.Event
 
 class FilmeViewModel : ViewModel() {
 
@@ -28,6 +29,10 @@ class FilmeViewModel : ViewModel() {
     val filmeDetalhesLiveData: LiveData<FilmesDetails>
         get() = _filmeDetalhesLiveData
     private val _filmeDetalhesLiveData = MutableLiveData<FilmesDetails>()
+
+    val DataStateLiveData: LiveData<DataState>
+        get() = _DataStateLiveData
+    private val _DataStateLiveData = MutableLiveData<DataState>()
 
 
     /** LiveData - LISTA */
@@ -49,7 +54,7 @@ class FilmeViewModel : ViewModel() {
     /** LiveData - Navegação para Tela de Detalhes */
     val navigationToDetalhesLiveData
         get() = _navigationToDetalhesLiveData
-    private val _navigationToDetalhesLiveData = MutableLiveData<Unit>()
+    private val _navigationToDetalhesLiveData = MutableLiveData<Event<Unit>>()
 
     /**  ***************************************************************************** */
 
@@ -77,11 +82,15 @@ class FilmeViewModel : ViewModel() {
     }
 
     fun onFilmeSelected(position: Int) {
-        val filmesDetails = _filmesListaLiveData.value?.get(position)
+        val filmesDetails = _filmesListaLiveData.value?.getOrNull(position)
+
         filmesDetails?.let {
-            _appState.postValue(DataState.Loading)
-            _navigationToDetalhesLiveData.postValue(Unit)
+            viewModelScope.launch {
+                _appState.postValue(DataState.Loading)
+                _navigationToDetalhesLiveData.postValue(Event<Unit>(Unit))
+            }
         }
+
     }
 
     /**  função Kotlin usando Retrofit / fazer uma requisição GET */
