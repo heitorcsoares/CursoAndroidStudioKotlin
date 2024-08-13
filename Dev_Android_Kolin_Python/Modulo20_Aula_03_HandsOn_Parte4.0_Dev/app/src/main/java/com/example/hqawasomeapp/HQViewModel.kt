@@ -12,8 +12,10 @@ import com.example.hqawasomeapp.data.DataState
 import com.example.hqawasomeapp.data.Event
 import com.example.hqawasomeapp.helper.ApiHelper
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 
 class HQViewModel : ViewModel() {                                   //extensão da classe ViewModel
 
@@ -37,8 +39,15 @@ class HQViewModel : ViewModel() {                                   //extensão 
         get() = _navigationToDetailLiveData
     private val _navigationToDetailLiveData = MutableLiveData<Event<Unit>>()
 
+    val client = OkHttpClient.Builder()
+        .connectTimeout(120, TimeUnit.SECONDS)
+        .readTimeout(120, TimeUnit.SECONDS)
+        .writeTimeout(120, TimeUnit.SECONDS)
+        .build()
+
     private val retrofit = Retrofit.Builder()
         .baseUrl(ApiCredentials.baseUrl)
+        .client(client)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
@@ -66,13 +75,13 @@ class HQViewModel : ViewModel() {                                   //extensão 
         viewModelScope.launch {
             val response = comicService.getComicList(timestamp, ApiCredentials.publickey,hash,100)
 
-            Log.d("API_CALL", "Resposta da API: ${response.code()}")               //Log para LogCat
+            //Log.d("API_CALL", "Resposta da API: ${response.code()}")               //Log para LogCat
 
             if(response.isSuccessful) {
                 _hqListLiveData.postValue(response.body()?.data?.results)
                 _appState.postValue(DataState.Success)                                      //configura o Estado SUCESSS ao App
             } else {
-                Log.d("API_CALL", "Error na requisição: ${response.errorBody()?.string()}")   //Log para LogCat
+                //Log.d("API_CALL", "Error na requisição: ${response.errorBody()?.string()}")   //Log para LogCat
                 _appState.postValue(DataState.Error)                                        //configura o Estado ERRO ao App inicialmente
             }
         }
